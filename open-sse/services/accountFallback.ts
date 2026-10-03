@@ -2109,6 +2109,11 @@ export function checkFallbackError(
       );
       if (forbiddenMatch) return ruleScopedResult(forbiddenMatch);
     }
+    // 429 naming the refused model fails over to the rule-owned model cooldown.
+    if (status === HTTP_STATUS.RATE_LIMITED && provider) {
+      const unavailable = getOpencodeModelUnavailableMatch(provider, status, headers, errorStr);
+      if (unavailable) return ruleScopedResult(unavailable);
+    }
 
     if (
       status === HTTP_STATUS.FORBIDDEN &&

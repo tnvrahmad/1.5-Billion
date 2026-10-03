@@ -1,0 +1,1 @@
+- **fix(providers):** a 429 naming the refused model now fails over to a 5-minute model cooldown ([#PRNUM](https://github.com/diegosouzapw/OmniRoute/pull/PRNUM)) — thanks @maxmad64bis
